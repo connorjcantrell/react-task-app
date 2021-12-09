@@ -49,9 +49,19 @@ class App extends Component {
   deleteTask = (e) => {
     const id = e.target.id
     this.setState({
-      tasks: this.state.tasks.filter(t => t.id !== id)
+      tasks: this.state.tasks.filter(task => task.id !== id)
+    }, this.updateDisplayNumbers())
+  }
+
+  updateDisplayNumbers() {
+    let index = 1
+    this.setState({
+      tasks: this.state.tasks.map(task => {
+        task.number = index
+        index++
+        return task
+      })
     })
-    console.log(this.state.tasks)
   }
 
   render() {
