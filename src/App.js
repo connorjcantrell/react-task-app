@@ -50,7 +50,7 @@ class App extends Component {
     const id = e.target.id
     this.setState({
       tasks: this.state.tasks.filter(task => task.id !== id)
-    }, this.updateDisplayNumbers())
+    }, () => this.updateDisplayNumbers())
   }
 
   updateDisplayNumbers() {
