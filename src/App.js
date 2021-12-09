@@ -12,7 +12,7 @@ class App extends Component {
       task: {
         text: '',
         id: uuidv4(),
-        number: undefined
+        number: 1
       },
       tasks: [],
     }
@@ -24,7 +24,7 @@ class App extends Component {
       task : {
         text: e.target.value,
         id: this.state.task.id,
-        number: this.state.tasks.length + 1
+        number: this.state.task.number + 1
       }
     })
   }
@@ -39,7 +39,7 @@ class App extends Component {
       task: { 
         text: '',
         id: uuidv4(),
-        number: this.state.tasks.length + 1
+        number: this.state.task.number + 1
       },
     })
   }
