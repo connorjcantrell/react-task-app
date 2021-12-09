@@ -6,7 +6,7 @@ class App extends Component {
   constructor() {
     super()
 
-    this.completeTask = this.completeTask.bind(this)
+    this.deleteTask = this.deleteTask.bind(this)
 
     this.state = {
       task: {
@@ -44,9 +44,13 @@ class App extends Component {
     })
   }
 
-  completeTask(id) {
-    // TODO: Remove task from tasks array by id 
-    console.log('Running completeTask()')
+  deleteTask = (e) => {
+    const id = e.target.id
+    this.setState({
+      tasks: this.state.tasks.filter(t => t.id !== id)
+    })
+    console.log(this.state.tasks)
+    // this.updateDisplayNumbers()
   }
 
   render() {
@@ -63,7 +67,7 @@ class App extends Component {
               id="taskInput" />
             <button type="submit">Add Task</button>
         </form>
-        <Overview completeTask={this.completeTask} tasks={tasks} />
+        <Overview deleteTask={this.deleteTask} tasks={tasks} />
       </div>
     )
   }
