@@ -12,7 +12,7 @@ class App extends Component {
       task: {
         text: '',
         id: uuidv4(),
-        number: 1
+        number: undefined
       },
       tasks: [],
     }
@@ -24,7 +24,7 @@ class App extends Component {
       task : {
         text: e.target.value,
         id: this.state.task.id,
-        number: this.state.task.number + 1
+        number: this.state.tasks.length + 1
       }
     })
   }
@@ -33,13 +33,15 @@ class App extends Component {
   onSubmitTask = (e) => {
     // Won't refresh the form when submitted
     e.preventDefault()
+    // Prevent empty input
+    if (e.target.querySelector('input').value === '') return
     this.setState({
       // concat() doens't change the existing array, but instead returns a new array
       tasks: this.state.tasks.concat(this.state.task),
       task: { 
         text: '',
         id: uuidv4(),
-        number: this.state.task.number + 1
+        number: this.state.tasks.length + 1
       },
     })
   }
@@ -50,7 +52,6 @@ class App extends Component {
       tasks: this.state.tasks.filter(t => t.id !== id)
     })
     console.log(this.state.tasks)
-    // this.updateDisplayNumbers()
   }
 
   render() {
@@ -59,13 +60,13 @@ class App extends Component {
     return (
       <div>
         <form onSubmit={this.onSubmitTask}>
-            <label htmlFor="taskInput">Enter task</label>
-            <input
-              onChange={this.handleChange}
-              value={task.text}
-              type="text"
-              id="taskInput" />
-            <button type="submit">Add Task</button>
+          <label htmlFor="taskInput">Enter task</label>
+          <input
+            onChange={this.handleChange}
+            value={task.text}
+            type="text"
+            id="taskInput" />
+          <button type="submit">Add Task</button>
         </form>
         <Overview deleteTask={this.deleteTask} tasks={tasks} />
       </div>
