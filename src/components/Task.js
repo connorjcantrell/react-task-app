@@ -7,21 +7,20 @@ class Task extends Component {
 
     this.state = {
       id : uuidv4(),
-      number: undefined,
-      description: '',
+      text: '',
       edit: false
     }
   }
 
-  displayDescription() {
+  displayText() {
     return (
       <div key={this.id}>
-        {this.description}
+        {this.text}
       </div>
     )
   }
 
-  editDescription() {
+  editText() {
     return (
       <div key={this.id}>
         <input id={this.id}></input>
@@ -30,8 +29,8 @@ class Task extends Component {
   }
 
   render() {
-    if (this.state.edit) return this.editTask()
-    return this.displayTask()
+    if (this.state.edit) return this.editText()
+    return this.displayText()
   }
 }
 
