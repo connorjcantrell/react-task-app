@@ -7,7 +7,6 @@ const Overview = (props) => {
   return (
     <ul>
       {tasks.map((task, index) => {
-        console.log(task)
         if (!task.edit) {
           return (
             <li key={task.id} id={task.id}>
