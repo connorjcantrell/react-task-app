@@ -10,13 +10,13 @@ class TaskManager extends Component {
       task: {
         id: uuidv4(),
         text: '',
-        display: true
+        edit: false
       },
       tasks: [],
     }
 
     this.modifyText = this.modifyText.bind(this)
-    this.switchDisplayMode = this.switchDisplayMode.bind(this)
+    this.switchEditMode = this.switchEditMode.bind(this)
   }
 
   // Sets the current task in state to whatever is typed in input field
@@ -25,7 +25,7 @@ class TaskManager extends Component {
       task: {
         text: e.target.value,
         id: this.state.task.id,
-        display: true
+        edit: false
       }
     })
   }
@@ -39,7 +39,7 @@ class TaskManager extends Component {
       task: { 
         id: uuidv4(),
         text: '',
-        display: true
+        edit: false
       },
     })
   }
@@ -62,7 +62,7 @@ class TaskManager extends Component {
       tasks: this.state.tasks.map((task) => {
         if (task.id === id && input.value.length !== '') {
           task.text = input.value
-          task.display = true
+          task.edit = false
         }
         return task
       })
@@ -70,12 +70,12 @@ class TaskManager extends Component {
   }
 
   // Reverse Display boolean for a specific Task
-  switchDisplayMode = (e) => {
+  switchEditMode = (e) => {
     const id = e.target.parentNode.id
     this.setState({
       tasks: this.state.tasks.map((task) => {
         if (task.id === id) {
-          task.display = !task.display
+          task.edit = !task.edit
         }
         return task
       })
@@ -98,7 +98,7 @@ class TaskManager extends Component {
         <Overview 
           tasks={tasks}
           modifyText={this.modifyText}
-          switchDisplayMode={this.switchDisplayMode}
+          switchEditMode={this.switchEditMode}
           deleteTask={this.deleteTask}
         />
       </div>
