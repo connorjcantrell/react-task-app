@@ -3,7 +3,7 @@ import DisplayTask from './DisplayTask'
 import EditTask from './EditTask'
 
 const Overview = (props) => {
-  let {tasks, modifyText, switchDisplayMode} = props
+  let {tasks, modifyText, switchDisplayMode, deleteTask} = props
   return (
     <ul>
       {tasks.map((task, index) => {
@@ -13,6 +13,7 @@ const Overview = (props) => {
               <p>{index + 1}: </p>
               <DisplayTask text={task.text}/>
               <button onClick={switchDisplayMode}>Edit</button>
+              <button onClick={deleteTask}>Delete</button>
             </li>
           )
         }
