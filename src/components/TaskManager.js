@@ -69,7 +69,7 @@ class TaskManager extends Component {
     })
   }
 
-  // Reverse Display boolean for a specific Task
+  // Reverse Task's `edit` field boolean. Used for conditional rendering purposes
   switchEditMode = (e) => {
     const id = e.target.parentNode.id
     this.setState({
