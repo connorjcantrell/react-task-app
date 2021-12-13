@@ -44,6 +44,16 @@ class TaskManager extends Component {
     })
   }
 
+  // Delete specific Task
+  deleteTask = (e) => {
+    const id = e.target.parentNode.id
+    this.setState({
+      tasks: this.state.tasks.filter((task) => {
+        return id !== task.id
+      })
+    })
+  }
+
   // Modify text for a specific Task
   modifyText = (e) => {
     const id = e.target.parentNode.id
@@ -89,6 +99,7 @@ class TaskManager extends Component {
           tasks={tasks}
           modifyText={this.modifyText}
           switchDisplayMode={this.switchDisplayMode}
+          deleteTask={this.deleteTask}
         />
       </div>
     )
