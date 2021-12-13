@@ -7,22 +7,22 @@ const Overview = (props) => {
   return (
     <ul>
       {tasks.map((task, index) => {
-        if (!task.edit) {
+        if (task.edit) {
           return (
             <li key={task.id} id={task.id}>
               <p>{index + 1}: </p>
-              <DisplayTask text={task.text}/>
-              <button onClick={switchEditMode}>Edit</button>
-              <button onClick={deleteTask}>Delete</button>
+              <EditTask />
+              <button onClick={modifyText}>Submit</button>
+              <button onClick={switchEditMode}>Cancel</button>
             </li>
           )
         }
         return (
           <li key={task.id} id={task.id}>
             <p>{index + 1}: </p>
-            <EditTask />
-            <button onClick={modifyText}>Submit</button>
-            <button onClick={switchEditMode}>Cancel</button>
+            <DisplayTask text={task.text}/>
+            <button onClick={switchEditMode}>Edit</button>
+            <button onClick={deleteTask}>Delete</button>
           </li>
         )
       })}
